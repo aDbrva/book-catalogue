@@ -16,6 +16,14 @@ app.get("/add-book", (req, res) => {
     res.sendFile(createPath('add-book'))
 })
 
+app.get("/books", (req, res) => {
+    res.sendFile(createPath('books'))
+})
+
+app.get("/book/:id", (req, res) => {
+    res.sendFile(createPath('book'))
+})
+
 app.use((req, res) => {
     res.status(404)
         .sendFile(createPath('error'))
