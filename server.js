@@ -7,6 +7,8 @@ const PORT = 3000
 
 const createPath = (page) => path.resolve(__dirname, 'views', `${page}.html`)
 
+app.use(express.static('css'))
+
 app.get("/", (req, res) => {
     // console.log(createPath('index'))
     res.sendFile(createPath('index'))
