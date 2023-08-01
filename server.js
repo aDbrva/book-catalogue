@@ -3,32 +3,35 @@ const path = require("path")
 
 const app = express()
 
+app.set("view engine", "ejs")
+
 const PORT = 3000
 
-const createPath = (page) => path.resolve(__dirname, 'views', `${page}.html`)
+const createPath = (page) => path.resolve(__dirname, 'views', `${page}.ejs`)
 
 app.use(express.static('css'))
 
+
 app.get("/", (req, res) => {
     // console.log(createPath('index'))
-    res.sendFile(createPath('index'))
+    res.render(createPath('index'))
 })
 
 app.get("/add-book", (req, res) => {
-    res.sendFile(createPath('add-book'))
+    res.render(createPath('add-book'))
 })
 
 app.get("/books", (req, res) => {
-    res.sendFile(createPath('books'))
+    res.render(createPath('books'))
 })
 
 app.get("/book/:id", (req, res) => {
-    res.sendFile(createPath('book'))
+    res.render(createPath('book'))
 })
 
 app.use((req, res) => {
     res.status(404)
-        .sendFile(createPath('error'))
+        .render(createPath('error'))
 })
 
 app.listen(PORT, () => {
