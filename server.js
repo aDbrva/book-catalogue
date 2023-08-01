@@ -22,7 +22,12 @@ app.get("/add-book", (req, res) => {
 })
 
 app.get("/books", (req, res) => {
-    res.render(createPath('books'))
+    const books = [
+        {"title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
+        {"title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
+    ]
+    
+    res.render(createPath('books'), {books})
 })
 
 app.get("/book/:id", (req, res) => {
