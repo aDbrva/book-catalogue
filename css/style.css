@@ -3,6 +3,11 @@ body {
     padding: 0;
 }
 
+.container {
+    width: 1200px;
+    margin: auto;
+}
+
 /***************************** Навігація ********************************/
 
 nav {
@@ -52,10 +57,58 @@ nav a {
 
 /***************************** Головна сторінка ********************************/
 
-.container {
+.main-page {
     height: 90vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     /* background-color: blueviolet; */
+}
+
+/***************************** Каталог ********************************/
+
+.title {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.books {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* text-align: center; */
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    margin-top: 8px;
+    font-size: 25px;
+    color: #000000;
+    text-decoration: none;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bold;
+}
+
+.time {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.book-author {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.book-description {
+    font-family: 'Roboto Mono', monospace;
 }
