@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/***************************** Навігація ********************************/
+
+nav {
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bold;
+    font-size: 16px;
+    /* background-color: blue; */
+}
+
+nav li {
+    margin-right: 50px;
+}
+
+nav a {
+    color: #000;
+    text-decoration: none;
+}
+
+.nav-btns {
+    margin-left: 50px;
+}
+
+.nav-btn {
+    display: inline-block;
+    background: #129f1e;
+    color: #fff;
+    padding: 0.7rem 1.3rem;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.nav-btn:hover {
+    background: #118f1b;
+}
+
+/***************************** Головна сторінка ********************************/
+
+.container {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: blueviolet; */
+}
