@@ -16,7 +16,19 @@
     </header>
 
     <div class="container">
-        <h1>Книга</h1>
+        <div class="books-page">
+            <h1 class="title">Книга</h1>
+            <div class="book">
+                <div class="main-info">
+                    <p class="book-title"><%= book.title%></p>
+                    <p class="time"><%= book.time%></p>
+                </div>
+                <p class="book-author"><%= book.author%></p>
+                <p class="book-description"><%= book.description%></p>
+
+                <hr align="center" width="100%" size="3" color="#129f1e">
+            </div>
+        </div>
     </div>
 </body>
 </html>

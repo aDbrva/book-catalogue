@@ -26,8 +26,8 @@ app.get("/add-book", (req, res) => {
 app.get("/books", (req, res) => {
     const title = "Каталог"
     const books = [
-        {"title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
-        {"title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
+        {"id":"1", "title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
+        {"id":"2", "title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
     ]
     
     res.render(createPath('books'), {books, title})
@@ -35,7 +35,14 @@ app.get("/books", (req, res) => {
 
 app.get("/book/:id", (req, res) => {
     const title = "Книга"
-    res.render(createPath('book'), {title})
+    const book = {
+        "id":"1", 
+        "title": "Назва книги", 
+        "author": "Автор книги", 
+        "description": "Опис книги", 
+        "time": "00:00:00"
+    }
+    res.render(createPath('book'), {title, book})
 })
 
 app.use((req, res) => {
