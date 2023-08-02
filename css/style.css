@@ -157,3 +157,14 @@ input[type=submit] {
 input[type=submit]:hover {
     background: #118f1b;
 }
+
+/***************************** Додати книгу ********************************/
+
+.error {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto Mono', monospace;
+}
