@@ -1,11 +1,19 @@
 const express = require("express")
 const path = require("path")
+const mongoose = require("mongoose")
 
 const app = express()
 
 app.set("view engine", "ejs")
 
 const PORT = 3000
+
+const db = 'mongodb+srv://aDbrv:220700july22@cluster0.jswevtt.mongodb.net/book-catalogue?retryWrites=true&w=majority'
+
+mongoose
+    .connect(db)
+    .then((res) => console.log('Connected to DB'))
+    .catch((err) => console.log(err))
 
 const createPath = (page) => path.resolve(__dirname, 'views', `${page}.ejs`)
 
