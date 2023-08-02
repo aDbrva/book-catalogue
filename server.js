@@ -1,6 +1,7 @@
 const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
+const Book = require("./models/book")
 
 const app = express()
 
@@ -35,36 +36,37 @@ app.get("/add-book", (req, res) => {
 
 app.post("/add-book", (req, res) => {
     const {title, author, description} = req.body
-    const book = {
-        id: new Date(),
-        title,
-        author,
-        description,
-        time: (new Date()).toLocaleDateString()
-    }
-    // console.log(book)
-    res.render(createPath('book'), {title, book})
+    const book = new Book({title, author, description})
+
+    book
+        .save()
+        .then((result) => res.redirect("/books"))
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
 })
 
 app.get("/books", (req, res) => {
     const title = "Каталог"
-    const books = [
-        {"id":"1", "title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
-        {"id":"2", "title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
-    ]
-    
-    res.render(createPath('books'), {books, title})
+    Book
+        .find()
+        .sort({title: -1})
+        .then((books) => res.render(createPath('books'), {books, title}))
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
 })
 
 app.get("/book/:id", (req, res) => {
-    const book = {
-        "id":"1", 
-        "title": "Назва книги", 
-        "author": "Автор книги", 
-        "description": "Опис книги", 
-        "time": "00:00:00"
-    }
-    res.render(createPath('book'), {book})
+    Book
+        .findById(req.params.id)
+        .then((book) => res.render(createPath('book'), {book}))
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
 })
 
 app.use((req, res) => {
