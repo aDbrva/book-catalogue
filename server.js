@@ -51,7 +51,7 @@ app.get("/books", (req, res) => {
     const title = "Каталог"
     Book
         .find()
-        .sort({title: -1})
+        .sort({title: 1})
         .then((books) => res.render(createPath('books'), {books, title}))
         .catch((err) => {
             console.log(err)
