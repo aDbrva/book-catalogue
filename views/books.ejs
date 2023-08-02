@@ -19,12 +19,9 @@
         <div class="books-page">
             <h1 class="title">Каталог</h1>
             <% if (books.length) { %>
-                <% books.forEach(({id, title, author, description, time}) => {%>
+                <% books.forEach(({id, title, author, description}) => {%>
                     <div class="book">
-                        <div class="main-info">
-                            <a href="/book/<%= id%>" class="book-title"><%= title%></a>
-                            <p class="time"><%= time%></p>
-                        </div>
+                        <a href="/book/<%= id%>" class="book-title"><%= title%></a>
                         <p class="book-author"><%= author%></p>
                         <p class="book-description"><%= description%></p>
         
