@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Книгарня | <%= title%></title>
+    <title>Книгарня | <%= book.title%></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -17,11 +17,11 @@
 
     <div class="container">
         <div class="books-page">
-            <h1 class="title">Книга</h1>
+            <h1 class="title"><%= book.title%></h1>
             <div class="book">
                 <div class="main-info">
                     <p class="book-title"><%= book.title%></p>
-                    <p class="time"><%= book.time%></p>
+                    <p class="time"><%= book.time || 'No data'%></p>
                 </div>
                 <p class="book-author"><%= book.author%></p>
                 <p class="book-description"><%= book.description%></p>

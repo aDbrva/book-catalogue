@@ -11,6 +11,8 @@ const createPath = (page) => path.resolve(__dirname, 'views', `${page}.ejs`)
 
 app.use(express.static('css'))
 
+app.use(express.urlencoded({extended: false}))
+
 
 app.get("/", (req, res) => {
     const title = "Головна"
@@ -21,6 +23,19 @@ app.get("/", (req, res) => {
 app.get("/add-book", (req, res) => {
     const title = "Додати книгу"
     res.render(createPath('add-book'), {title})
+})
+
+app.post("/add-book", (req, res) => {
+    const {title, author, description} = req.body
+    const book = {
+        id: new Date(),
+        title,
+        author,
+        description,
+        time: (new Date()).toLocaleDateString()
+    }
+    // console.log(book)
+    res.render(createPath('book'), {title, book})
 })
 
 app.get("/books", (req, res) => {
@@ -34,7 +49,6 @@ app.get("/books", (req, res) => {
 })
 
 app.get("/book/:id", (req, res) => {
-    const title = "Книга"
     const book = {
         "id":"1", 
         "title": "Назва книги", 
@@ -42,7 +56,7 @@ app.get("/book/:id", (req, res) => {
         "description": "Опис книги", 
         "time": "00:00:00"
     }
-    res.render(createPath('book'), {title, book})
+    res.render(createPath('book'), {book})
 })
 
 app.use((req, res) => {
