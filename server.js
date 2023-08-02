@@ -13,30 +13,35 @@ app.use(express.static('css'))
 
 
 app.get("/", (req, res) => {
+    const title = "Головна"
     // console.log(createPath('index'))
-    res.render(createPath('index'))
+    res.render(createPath('index'), {title})
 })
 
 app.get("/add-book", (req, res) => {
-    res.render(createPath('add-book'))
+    const title = "Додати книгу"
+    res.render(createPath('add-book'), {title})
 })
 
 app.get("/books", (req, res) => {
+    const title = "Каталог"
     const books = [
         {"title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
         {"title": "Назва книги", "author": "Автор книги", "description": "Опис книги", "time": "00:00:00"},
     ]
     
-    res.render(createPath('books'), {books})
+    res.render(createPath('books'), {books, title})
 })
 
 app.get("/book/:id", (req, res) => {
-    res.render(createPath('book'))
+    const title = "Книга"
+    res.render(createPath('book'), {title})
 })
 
 app.use((req, res) => {
+    const title = "Помилка"
     res.status(404)
-        .render(createPath('error'))
+        .render(createPath('error'), {title})
 })
 
 app.listen(PORT, () => {
