@@ -113,6 +113,30 @@ nav a {
     font-family: 'Roboto Mono', monospace;
 }
 
+.btns-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.btn-control {
+    width: 15%;
+    background: #129f1e;
+    color: #fff;
+    padding: 0.7rem 1.3rem;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.btn-control:hover {
+    background: #118f1b;
+}
+
 /***************************** Додати книгу ********************************/
 
 .add-book-page {
@@ -158,7 +182,7 @@ input[type=submit]:hover {
     background: #118f1b;
 }
 
-/***************************** Додати книгу ********************************/
+/***************************** Помилка ********************************/
 
 .error {
     height: 80vh;

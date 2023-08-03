@@ -24,12 +24,29 @@
                         <a href="/book/<%= id%>" class="book-title"><%= title%></a>
                         <p class="book-author"><%= author%></p>
                         <p class="book-description"><%= description%></p>
-        
+                        <div class="btns-control">
+                            <button id="book-edit" class="btn-control">Редагувати</button>
+                            <button id="book-delete" class="btn-control" data-id="<%= id%>">Видалити</button>
+                        </div>
                         <hr align="center" width="100%" size="3" color="#129f1e">
                     </div>
                 <% }) %>
             <% } %>
         </div>
     </div>
+
+
+    <script>
+        document.addEventListener('click', (event) => {
+            const id = event.target.dataset.id || null
+            if(id) {
+                fetch(`/books/${id}`, {
+                    method: 'DELETE',
+                }).then(() => {
+                    window.location.reload()
+                })
+            }
+        })
+    </script>
 </body>
 </html>
