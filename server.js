@@ -40,7 +40,17 @@ app.post("/add-book", (req, res) => {
 
     book
         .save()
-        .then((result) => res.redirect("/books"))
+        .then(() => res.redirect("/books"))
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
+})
+
+app.delete("/books/:id", (req, res) => {
+    Book
+        .findByIdAndDelete(req.params.id)
+        .then(() => res.sendStatus(200))
         .catch((err) => {
             console.log(err)
             res.render(createPath('error'), {title: "Помилка"})
@@ -62,7 +72,10 @@ app.get("/books", (req, res) => {
 app.get("/book/:id", (req, res) => {
     Book
         .findById(req.params.id)
-        .then((book) => res.render(createPath('book'), {book}))
+        .then((book) => {
+            // console.log(book)
+            res.render(createPath('book'), {book})
+        })
         .catch((err) => {
             console.log(err)
             res.render(createPath('error'), {title: "Помилка"})
