@@ -119,6 +119,12 @@ nav a {
     justify-content: flex-end;
 }
 
+a.btn-control {
+    font-size: 13.3px;
+    text-align: center;
+    width: 140px;
+}
+
 .btn-control {
     width: 15%;
     background: #129f1e;
