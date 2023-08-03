@@ -1,5 +1,6 @@
 const express = require("express")
 const path = require("path")
+const methodOverride = require('method-override')
 const mongoose = require("mongoose")
 const Book = require("./models/book")
 
@@ -22,39 +23,13 @@ app.use(express.static('css'))
 
 app.use(express.urlencoded({extended: false}))
 
+app.use(methodOverride('_method'))
+
 
 app.get("/", (req, res) => {
     const title = "Головна"
     // console.log(createPath('index'))
     res.render(createPath('index'), {title})
-})
-
-app.get("/add-book", (req, res) => {
-    const title = "Додати книгу"
-    res.render(createPath('add-book'), {title})
-})
-
-app.post("/add-book", (req, res) => {
-    const {title, author, description} = req.body
-    const book = new Book({title, author, description})
-
-    book
-        .save()
-        .then(() => res.redirect("/books"))
-        .catch((err) => {
-            console.log(err)
-            res.render(createPath('error'), {title: "Помилка"})
-        })
-})
-
-app.delete("/books/:id", (req, res) => {
-    Book
-        .findByIdAndDelete(req.params.id)
-        .then(() => res.sendStatus(200))
-        .catch((err) => {
-            console.log(err)
-            res.render(createPath('error'), {title: "Помилка"})
-        })
 })
 
 app.get("/books", (req, res) => {
@@ -81,6 +56,61 @@ app.get("/book/:id", (req, res) => {
             res.render(createPath('error'), {title: "Помилка"})
         })
 })
+
+app.get("/add-book", (req, res) => {
+    const title = "Додати книгу"
+    res.render(createPath('add-book'), {title})
+})
+
+app.post("/add-book", (req, res) => {
+    const {title, author, description} = req.body
+    const book = new Book({title, author, description})
+
+    book
+        .save()
+        .then(() => res.redirect("/books"))
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
+})
+
+app.delete("/book/:id", (req, res) => {
+    Book
+        .findByIdAndDelete(req.params.id)
+        .then(() => res.sendStatus(200))
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
+})
+
+app.get("/edit-book/:id", (req, res) => {
+    const title = "Редагувати книгу"
+    Book
+        .findById(req.params.id)
+        .then((book) => {
+            res.render(createPath('edit-book'), {book, title})
+        })
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
+})
+
+app.put("/edit-book/:id", (req, res) => {
+    const id = req.params.id
+    const {title, author, description} = req.body
+
+    Book
+        .findByIdAndUpdate(id, {title, author, description})
+        .then(() => res.redirect(`/book/${id}`))
+        .catch((err) => {
+            console.log(err)
+            res.render(createPath('error'), {title: "Помилка"})
+        })
+})
+
 
 app.use((req, res) => {
     const title = "Помилка"

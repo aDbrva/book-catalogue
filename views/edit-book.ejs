@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книгарня | <%= title%></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="nav-container">
+        <%- include('./partials/nav.ejs')%>
+    </header>
+
+    <div class="container">
+        <div class="add-book-page">
+            <h1 class="title"><%= title%></h1>
+            <form method="post" action="/edit-book/<%= book.id%>?_method=PUT" class="add-book-form">
+                <label for="name">Назва книги</label><br>
+                <input type="text" id="name" name="title" value="<%= book.title%>"><br>
+                <label for="author">Автор книги</label><br>
+                <input type="text" id="author" name="author" value="<%= book.author%>"><br>
+                <label for="description">Опис книги</label><br>
+                <textarea id="description" style="height:150px" name="description"><%= book.description%></textarea><br>
+                <input type="submit" value="Зберегти">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
