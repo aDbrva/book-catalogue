@@ -1,6 +1,5 @@
 const express = require("express")
 const path = require("path")
-const methodOverride = require('method-override')
 const mongoose = require("mongoose")
 const Book = require("./models/book")
 
@@ -23,7 +22,7 @@ app.use(express.static('css'))
 
 app.use(express.urlencoded({extended: false}))
 
-app.use(methodOverride('_method'))
+app.use(express.json())
 
 
 app.get("/", (req, res) => {
@@ -48,7 +47,6 @@ app.get("/book/:id", (req, res) => {
     Book
         .findById(req.params.id)
         .then((book) => {
-            // console.log(book)
             res.render(createPath('book'), {book})
         })
         .catch((err) => {
@@ -104,7 +102,7 @@ app.put("/edit-book/:id", (req, res) => {
 
     Book
         .findByIdAndUpdate(id, {title, author, description})
-        .then(() => res.redirect(`/book/${id}`))
+        .then(() => res.sendStatus(200))
         .catch((err) => {
             console.log(err)
             res.render(createPath('error'), {title: "Помилка"})

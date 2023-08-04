@@ -19,7 +19,7 @@
     <div class="container">
         <div class="add-book-page">
             <h1 class="title"><%= title%></h1>
-            <form method="post" action="/edit-book/<%= book.id%>?_method=PUT" class="add-book-form">
+            <form name="edit-book-form" data-id="<%= book.id%>" class="add-book-form">
                 <label for="name">Назва книги</label><br>
                 <input type="text" id="name" name="title" value="<%= book.title%>"><br>
                 <label for="author">Автор книги</label><br>
@@ -30,5 +30,35 @@
             </form>
         </div>
     </div>
+
+
+    <script>
+        document.forms["edit-book-form"].addEventListener('submit', event => {
+            // event.preventDefault()
+
+            const form = document.forms["edit-book-form"]
+
+            const id = event.target.dataset.id || null
+            const title = form.elements["title"].value
+            const author = form.elements["author"].value
+            const description = form.elements["description"].value
+
+            // console.log(`${id} - ${title} - ${author} - ${description}`);
+
+            fetch(`/edit-book/${id}`, {
+                method: "PUT", 
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    title,
+                    author,
+                    description
+                })
+            }).then(() => {
+                window.location.href = `/book/${id}`
+            }).catch(error => {
+                console.log(error)
+            })
+        })
+    </script>
 </body>
 </html>
