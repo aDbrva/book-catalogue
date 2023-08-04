@@ -34,14 +34,16 @@
 
 
     <script>
-        document.addEventListener('click', (event) => {
+        document.getElementById('book-delete').addEventListener('click', (event) => {
             const id = event.target.dataset.id || null
             if(id) {
                 fetch(`/book/${id}`, {
                     method: 'DELETE',
                 }).then(() => {
                     window.location.href = '/books'
-                })
+                }).catch(error => {
+                console.log(error)
+            })
             }
         })
     </script>
