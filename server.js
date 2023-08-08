@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose")
 const bookRoutes = require("./routes/book-routes")
+const apiBookRoutes = require("./routes/api-book-routes")
 const createPath = require("./helpers/create-path")
 
 const app = express()
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
 })
 
 app.use(bookRoutes)
+app.use(apiBookRoutes)
 
 app.use((req, res) => {
     const title = "Помилка"
