@@ -41,7 +41,7 @@ const editBook = (req, res) => {
     const {title, author, description} = req.body
 
     Book
-        .findByIdAndUpdate(id, {title, author, description})
+        .findByIdAndUpdate(id, {title, author, description}, {new: true})
         .then((book) => res.status(200).json(book))
         .catch((err) => handleError(res, err))
 }
